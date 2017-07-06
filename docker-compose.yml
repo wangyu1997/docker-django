@@ -1,0 +1,21 @@
+# db:
+#   image: mysql
+#   ports:
+#     - "3306:3306"
+#   volumes:
+#     - ./db:/var/lib/mysql
+#   environment:
+#     - MYSQL_DATABASE=mydata
+#     - MYSQL_ROOT_PASSWORD=19970819wy
+
+web:
+  build: .
+  command: python ./mysite/manage.py runserver 0.0.0.0:8000
+  # command: python ./mysite/manage.py migrate
+  # command: python ./mysite/manage.py runserver 0.0.0.0:8000
+  volumes:
+    - .:/code
+  ports:
+    - "8000:8000"
+  # links:
+    # - db
